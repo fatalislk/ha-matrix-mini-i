@@ -1,0 +1,12 @@
+{
+  "domain": "matrix_mini_i",
+  "name": "Matrix Audio mini-i",
+  "version": "1.0.0",
+  "documentation": "https://github.com/fatalislk/ha-matrix-mini-i",
+  "issue_tracker": "https://github.com/fatalislk/ha-matrix-mini-i/issues",
+  "dependencies": [],
+  "codeowners": ["@fatalislk"],
+  "config_flow": true,
+  "iot_class": "local_polling",
+  "requirements": []
+}

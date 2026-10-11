@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# HA runtime junk that sometimes lands in the config dir
+*.log
+*.db
+*.db-*
+.storage/
+home-assistant_v2.db*
+home-assistant.log*
+
+# macOS / editors
+.DS_Store
+.idea/
+.vscode/
