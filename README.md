@@ -28,7 +28,7 @@ new state is read back immediately, instead of waiting for the next poll).
 | `switch.matrix_…` power | switch | on = `power-on`, off = `standby`. The device stays on the network while in standby, so it can be woken from HA (no WoL needed). |
 | mute | switch | device mute |
 | volume | number (slider) | 0–100, same scale as the device's display |
-| input source | select | usb / opt / coa / iis / hdmi / bluetooth / airplay / dlna / roonready / spotify / tidal / qobuz / phono |
+| input source | select | USB / 光纤 / 同轴 / 同轴 2 / 光纤 2 / I2S / HDMI ARC / 网络串流 / 唱放 / 模拟输入 / 模拟输入 2 (device values are case-sensitive — see below) |
 | status | sensor | `power-on` / `standby`, with volume / mute / input / output / filters / dimmer / standby timer as attributes |
 | input, output, PCM filter, DSD filter, screen dimmer, network | sensors | read-only mirrors |
 
@@ -65,8 +65,11 @@ Home Assistant, then add the integration from the UI.
 * **Background polling is 2 s** over the persistent socket; anything changed on the device's front
   panel or the remote shows up within that window. Anything you change from Home Assistant is
   confirmed immediately (the integration re-reads state until the device agrees).
-* The input source list is a fixed superset — selecting a source your model doesn't have returns an
-  error from the device.
+* **Input values are case-sensitive.** `set-key-input` accepts exactly `usb`, `opt`, `coa`, `coa2`,
+  `opt2`, `iis`, `HDMI`, `network`, `PHONO`, `ANA`, `ANA2` on a mini-i Pro 4 — lowercase `hdmi`
+  returns `40997`. Streaming protocols (AirPlay / DLNA / Roon / Spotify…) are **not** separate input
+  values: select `network` and the device reports the active one in `streaming-source`. Anything not
+  in the list returns an error from the device.
 * Volume is set on the device's own 0–100 scale.
 * Only a subset of the protocol is exposed (power / mute / volume / input / filters / dimmer readout).
   The device exposes a lot more (standby timer, shortcut keys, output auto-switch, headphone gain
